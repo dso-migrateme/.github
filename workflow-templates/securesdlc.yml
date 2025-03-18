@@ -1,5 +1,5 @@
-name: SecureSDLC Umbrella
-run-name: "[Required SecureSDLC Umbrella Workflow] Ref:${{ github.ref_name }}"
+name: Nautilus SecureSDLC
+run-name: "[Nautilus SecureSDLC] Ref:${{ github.ref_name }}"
 
 on:
   workflow_dispatch: {}
@@ -20,12 +20,6 @@ jobs:
     outputs:
       visibility: ${{ steps.get_visibility.outputs.visibility }}
     steps:
-      - name: Init
-        run: |
-          echo "securesdlc-test"
-          echo ${{ github.ref_name }}
-          echo ${{ github.event.repository.default_branch }}
-
       - name: Get Repository Visibility
         id: get_visibility
         uses: actions/github-script@v6
@@ -45,7 +39,7 @@ jobs:
 
   securesdlc-sast:
     needs: [securesdlc-visibility-check]
-    # if: ${{ needs.securesdlc-visibility-check.outputs.visibility != 'public' }}
+    if: ${{ needs.securesdlc-visibility-check.outputs.visibility != 'public' }}
     uses: nautilus-wraith/securesdlc-sast/.github/workflows/securesdlc-sast.yml@main
     secrets:
       SEMGREP_APP_URL: ${{ secrets.SEMGREP_APP_URL }}
@@ -53,7 +47,7 @@ jobs:
 
   securesdlc-sca:
     needs: [securesdlc-visibility-check]
-    # if: ${{ needs.securesdlc-visibility-check.outputs.visibility != 'public' }}
+    if: ${{ needs.securesdlc-visibility-check.outputs.visibility != 'public' }}
     uses: nautilus-wraith/securesdlc-sast/.github/workflows/securesdlc-sca.yml@main
     secrets:
       SEMGREP_APP_URL: ${{ secrets.SEMGREP_APP_URL }}
