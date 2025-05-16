@@ -15,40 +15,8 @@ on:
     branches: [ $default-branch ]
 
 jobs:
-  securesdlc-visibility-check:
-    runs-on: ubuntu-24.04
-    outputs:
-      visibility: ${{ steps.get_visibility.outputs.visibility }}
-    steps:
-      - name: Get Repository Visibility
-        id: get_visibility
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const { data: repo } = await github.rest.repos.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
-            // The 'visibility' field can be 'public', 'private', or 'internal'
-            const visibility = repo.visibility;
-            console.log(`Repository visibility: ${visibility}`);
-            core.setOutput('visibility', visibility);
-
-      - name: Display Visibility
-        run: echo "Repository visibility is ${{ steps.get_visibility.outputs.visibility }}"
-
-  securesdlc-sast:
-    needs: [securesdlc-visibility-check]
-    if: ${{ needs.securesdlc-visibility-check.outputs.visibility != 'public' }}
-    uses: nautilus-wraith/securesdlc-sast/.github/workflows/securesdlc-sast.yml@main
-    secrets:
-      SEMGREP_APP_URL: ${{ secrets.SEMGREP_APP_URL }}
-      SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-
-  securesdlc-sca:
-    needs: [securesdlc-visibility-check]
-    if: ${{ needs.securesdlc-visibility-check.outputs.visibility != 'public' }}
-    uses: nautilus-wraith/securesdlc-sast/.github/workflows/securesdlc-sca.yml@main
+  securesdlc-umbrella:
+    uses: nautilus-wraith/securesdlc-umbrella/.github/workflows/securesdlc-umbrella.yml@main
     secrets:
       SEMGREP_APP_URL: ${{ secrets.SEMGREP_APP_URL }}
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
