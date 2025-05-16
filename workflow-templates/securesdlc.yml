@@ -1,5 +1,5 @@
 name: Nautilus SecureSDLC
-run-name: "[Nautilus SecureSDLC] Ref:${{ github.ref_name }}"
+run-name: "[Nautilus SecureSDLC] Ref:${{ github.ref_name }} Event:${{ github.event_name }}"
 
 on:
   workflow_dispatch: {}
