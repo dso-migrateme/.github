@@ -11,8 +11,6 @@ on:
         required: true
   push:
     branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
 
 jobs:
   securesdlc-umbrella:
