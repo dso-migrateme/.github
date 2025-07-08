@@ -14,7 +14,7 @@ on:
 
 jobs:
   securesdlc-umbrella:
-    uses: nautilus-wraith/securesdlc-umbrella/.github/workflows/securesdlc-umbrella.yml@release-stable
+    uses: nautilus-wraith/securesdlc-umbrella/.github/workflows/securesdlc-umbrella.yml@main
     secrets:
       SEMGREP_APP_URL: ${{ secrets.SEMGREP_APP_URL }}
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
