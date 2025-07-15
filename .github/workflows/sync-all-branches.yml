@@ -1,5 +1,8 @@
 name: Sync All Branches with Upstream
 
+permissions:
+  contents: write
+
 on:
   workflow_call:
     inputs:
@@ -10,6 +13,8 @@ on:
         required: false
         type: string
         default: main
+
+permissions: {}
 
 jobs:
   sync:
