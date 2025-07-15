@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout target repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Sync upstream changes main
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1 # Or another chosen action
@@ -37,6 +39,8 @@ jobs:
     steps:
       - name: Checkout target repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Sync upstream changes release-stable
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1 # Or another chosen action
