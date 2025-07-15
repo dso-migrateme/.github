@@ -40,8 +40,10 @@ jobs:
 
       - name: Sync all branches
         run: |
-          for branch in ${{ steps.get_branches.outputs.branches }}
-          do
-            git checkout -B $branch upstream/$branch
-            git push origin $branch --force
+          branches="${{ steps.get_branches.outputs.branches }}"
+          echo "$branches" | while read branch; do
+            if [ -n "$branch" ]; then
+              git checkout -B "$branch" "upstream/$branch"
+              git push origin "$branch" --force
+            fi
           done 
