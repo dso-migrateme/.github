@@ -3,12 +3,17 @@ name: Sync All Branches with Upstream
 permissions: {}
 
 on:
-  workflow_call:
+  schedule:
+    - cron: '0 */4 * * *' # every 4 hours
+  workflow_dispatch:
     inputs:
       upstream_repo:
+        description: 'The upstream repository in owner/repo format'
         required: true
         type: string
+        default: nautilus-wraith/.github
       upstream_default_branch:
+        description: 'The default branch of the upstream repository (default: main)'
         required: false
         type: string
         default: main
@@ -18,7 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      workflows: write
     steps:
       - name: Checkout all branches
         uses: actions/checkout@v4
