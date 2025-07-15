@@ -30,7 +30,7 @@ jobs:
           target_repo_token: ${{ secrets.PAT_FORK }}
           upstream_sync_branch: main # Upstream branch to sync from
           upstream_repo_access_token: ${{ secrets.PAT_FORK }}
-          upstream_repository: ${{ github.event.inputs.upstream_repo || 'nautilus-wraith/.github' }}
+          upstream_sync_repo: ${{ github.event.inputs.upstream_repo || 'nautilus-wraith/.github' }}
 
   sync-latest-from-upstream-release-stable:
     runs-on: ubuntu-latest
@@ -45,3 +45,4 @@ jobs:
           target_repo_token: ${{ secrets.PAT_FORK }}
           upstream_sync_branch: release-stable # Upstream branch to sync from
           upstream_repo_access_token: ${{ secrets.PAT_FORK }}
+          upstream_sync_repo: ${{ github.event.inputs.upstream_repo || 'nautilus-wraith/.github' }}
