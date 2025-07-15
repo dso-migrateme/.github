@@ -1,5 +1,8 @@
 name: Sync All Branches with Upstream
 
+permissions:
+  contents: write
+
 on:
   workflow_call:
     inputs:
