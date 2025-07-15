@@ -6,7 +6,7 @@ on:
   workflow_dispatch: # Allow manual triggering
 
 jobs:
-  sync-latest-from-upstream:
+  sync-latest-from-upstream-main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout target repo
@@ -19,6 +19,12 @@ jobs:
           target_repo_token: ${{ secrets.PAT_FORK }}
           upstream_sync_branch: main # Upstream branch to sync from
           upstream_repo_access_token: ${{ secrets.PAT_FORK }}
+
+  sync-latest-from-upstream-release-stable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target repo
+        uses: actions/checkout@v3
 
       - name: Sync upstream changes release-stable
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1 # Or another chosen action
