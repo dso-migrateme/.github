@@ -4,6 +4,17 @@ on:
   schedule:
     - cron: '0 */4 * * *' # every 4 hours
   workflow_dispatch: # Allow manual triggering
+    inputs:
+      upstream_repo:
+        description: 'The upstream repository in owner/repo format'
+        required: true
+        type: string
+        default: nautilus-wraith/.github
+      upstream_default_branch:
+        description: 'The default branch of the upstream repository (default: main)'
+        required: false
+        type: string
+        default: main
 
 jobs:
   sync-latest-from-upstream-main:
