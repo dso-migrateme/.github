@@ -28,9 +28,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Add upstream remote
+      - name: Add upstream remote and authenticate
         run: |
-          git remote add upstream https://github.com/${{ inputs.upstream_repo }}.git
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_FORK }}@github.com/${{ github.repository }}.git
+          git remote add upstream https://x-access-token:${{ secrets.PAT_FORK }}@github.com/${{ inputs.upstream_repo }}.git
           git fetch upstream
 
       - name: Get all branches from upstream
