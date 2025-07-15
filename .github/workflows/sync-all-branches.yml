@@ -1,7 +1,6 @@
 name: Sync All Branches with Upstream
 
-permissions:
-  contents: write
+permissions: {}
 
 on:
   workflow_call:
@@ -17,6 +16,9 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      workflows: write
     steps:
       - name: Checkout all branches
         uses: actions/checkout@v4
