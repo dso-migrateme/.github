@@ -15,19 +15,18 @@ jobs:
       contents: write
     steps:
       - name: Set up Git    
-        with:
-          upstream_repo_access_token: ${{ secrets.PAT_FORK }}
-          upstream_sync_repo: 'nautilus-wraith/.github'
-          current_repo_and_org: ${{ github.repository }}
-          current_repo: ${{ github.event.repository.name }}
-
+        env:
+          UPSTREAM_REPO_ACCESS_TOKEN: ${{ secrets.PAT_FORK }}
+          UPSTREAM_SYNC_REPO: 'nautilus-wraith/.github'
+          CURRENT_REPO_AND_ORG: ${{ github.repository }}
+          CURRENT_REPO: ${{ github.event.repository.name }}
         run: |
           set -e
           git config user.name "secops-dso"
           git config user.email "163456430+secops-dso@users.noreply.github.com"
-          git clone --mirror https://$upstream_repo_access_token@github.com/$current_repo_and_org.git
-          cd $current_repo.git
-          git remote add upstream https://github.com/$upstream_sync_repo.git
+          git clone --mirror https://$UPSTREAM_REPO_ACCESS_TOKEN@github.com/$CURRENT_REPO_AND_ORG.git
+          cd $CURRENT_REPO.git
+          git remote add upstream https://github.com/$UPSTREAM_SYNC_REPO.git
           git fetch upstream
           git push origin --all
 
