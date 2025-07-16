@@ -1,0 +1,17 @@
+{
+    "name": "Nautilus NPM Publishing",
+    "description": "Publish NPM packages using cryptographic approvals",
+    "iconName": "template-icon",
+    "categories": [
+        "deployment",
+        "Automation",
+        "npm",
+        "JavaScript",
+        "nodejs",
+        "node"
+    ],
+    "filePatterns": [
+        ".github/workflows/*.yml",
+        "README.md"
+    ]
+}
