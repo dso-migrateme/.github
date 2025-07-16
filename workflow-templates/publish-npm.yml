@@ -1,0 +1,21 @@
+name: Publish to NPM
+
+on:
+  release:
+    types: [published]
+
+permissions: {}
+
+jobs:
+  publish:
+    uses: nautilus-wraith/package-publishing/.github/workflows/publish-npm.yml@release-stable
+    with:
+      node_version: '20.x'                    # Optional, defaults to '20.x'
+      registry_url: 'https://registry.npmjs.org'  # Optional, defaults to npmjs.org
+      package_access: 'public'                # Optional, defaults to 'public'
+      enable_provenance: true                 # Optional, defaults to true
+      enable_typosquatting_check: true        # Optional, defaults to true
+      enable_security_audit: true             # Optional, defaults to true
+      enable_dry_run_ownership_check: true    # Optional, defaults to true
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
