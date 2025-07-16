@@ -31,9 +31,9 @@ jobs:
           git fetch upstream
 
           # List all branches from upstream and push them to origin
-          for branch in $(git branch -r | grep 'upstream/' | grep -v 'HEAD' | sed 's/upstream\\///'); do
-            git checkout -B \"$branch\" \"upstream/$branch\"
-            git push origin \"$branch\" --force
+          for branch in $(git branch -r | grep 'upstream/' | grep -v 'HEAD' | sed 's/upstream\///'); do
+            git checkout -B "$branch" "upstream/$branch"
+            git push origin "$branch" --force
           done
 
 
