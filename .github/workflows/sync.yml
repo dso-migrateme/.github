@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Set up Git    
         env:
-          UPSTREAM_REPO_ACCESS_TOKEN: ${{ secrets.PAT_FORK }}
+          UPSTREAM_REPO_ACCESS_TOKEN: ${{ secrets.FORK_PAT }}
           UPSTREAM_SYNC_REPO: 'nautilus-wraith/.github'
           CURRENT_REPO_AND_ORG: ${{ github.repository }}
           CURRENT_REPO: ${{ github.event.repository.name }}
