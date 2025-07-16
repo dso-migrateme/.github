@@ -1,0 +1,34 @@
+name: Sync Fork
+
+permissions: {}
+
+on:
+  schedule:
+    - cron: '0 */4 * * *' # every 4 hours
+  workflow_dispatch: # Allow manual triggering
+
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Set up Git    
+        with:
+          upstream_repo_access_token: ${{ secrets.PAT_FORK }}
+          upstream_sync_repo: 'nautilus-wraith/.github'
+          current_repo_and_org: ${{ github.repository }}
+          current_repo: ${{ github.event.repository.name }}
+
+        run: |
+          set -e
+          git config user.name "secops-dso"
+          git config user.email "163456430+secops-dso@users.noreply.github.com"
+          git clone --mirror https://$upstream_repo_access_token@github.com/$current_repo_and_org.git
+          cd $current_repo.git
+          git remote add upstream https://github.com/$upstream_sync_repo.git
+          git fetch upstream
+          git push origin --all
+
+
