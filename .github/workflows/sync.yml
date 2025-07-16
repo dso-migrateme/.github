@@ -29,6 +29,11 @@ jobs:
           git config user.email "163456430+secops-dso@users.noreply.github.com"
           git remote add upstream https://$UPSTREAM_REPO_ACCESS_TOKEN@github.com/$UPSTREAM_SYNC_REPO.git
           git fetch upstream
-          git push origin --all
+
+          # List all branches from upstream and push them to origin
+          for branch in $(git branch -r | grep 'upstream/' | grep -v 'HEAD' | sed 's/upstream\///'); do
+            git checkout -B "$branch" "upstream/$branch"
+            git push origin "$branch" --force
+          done
 
 
