@@ -7,8 +7,6 @@ on:
   pull_request: {}
   # pull_request_target: {} # Gives workflows excessive permissions. Not wanted.
 
-permissions: {}
-
 jobs:
   securesdlc-umbrella:
     uses: nautilus-wraith/securesdlc-umbrella/.github/workflows/securesdlc-umbrella.yml@main
