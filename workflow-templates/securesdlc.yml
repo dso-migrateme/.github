@@ -12,8 +12,6 @@ on:
   push:
     branches: [ $default-branch ]
 
-permissions: {}
-
 jobs:
   securesdlc-umbrella:
     uses: nautilus-wraith/securesdlc-umbrella/.github/workflows/securesdlc-umbrella.yml@release-stable
