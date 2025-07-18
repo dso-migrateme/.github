@@ -17,3 +17,5 @@ Workflow templates support also branch name interpolation and the template can b
 `$default-branch` is interpolated at the time of including workflow template in the target repository.
 
 ## Required workflows
+
+Required workflows will reference this repository to inject the appropriate workflows into the subject repository.

@@ -3,20 +3,13 @@ run-name: "[Nautilus SecureSDLC] Ref:${{ github.ref_name }} Event:${{ github.eve
 
 on:
   workflow_dispatch: {}
-  workflow_call:
-    secrets:
-      SEMGREP_APP_URL:
-        required: true
-      SEMGREP_APP_TOKEN:
-        required: true
-  push:
-    branches: [ $default-branch ]
-
-permissions: {}
+  workflow_call: {}
+  pull_request: {}
+  # pull_request_target: {} # Gives workflows excessive permissions. Not wanted.
 
 jobs:
   securesdlc-umbrella:
-    uses: nautilus-wraith/securesdlc-umbrella/.github/workflows/securesdlc-umbrella.yml@release-stable
+    uses: nautilus-wraith/securesdlc-umbrella/.github/workflows/securesdlc-umbrella.yml@main
     secrets:
       SEMGREP_APP_URL: ${{ secrets.SEMGREP_APP_URL }}
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
