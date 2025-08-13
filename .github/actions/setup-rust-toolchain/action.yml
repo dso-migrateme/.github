@@ -1,0 +1,44 @@
+# https://github.com/actions-rust-lang/setup-rust-toolchain/blob/main/action.yml
+
+# This wrapper action ensures that we pin to a specific version of the third party
+# action without needing to update the pinned ref in multiple places.
+
+name: 'Setup Rust Toolchain'
+description: |
+  Setup specific Rust versions with caching pre-configured.
+  It provides problem matchers for cargo and rustfmt issues.
+
+inputs:
+  toolchain:
+    description: 'Comma-separated list of Rustup toolchain specifier e.g. stable, nightly, 1.42.0. The last version is the default.'
+    default: 'stable'
+  target:
+    description: 'Additional target support to install e.g. wasm32-unknown-unknown'
+    default: 'x86_64-unknown-linux-gnu'
+  components:
+    description: 'Comma-separated string of additional components to install e.g. clippy, rustfmt'
+    required: false
+
+outputs:
+  rustc-version:
+    description: "Version as reported by `rustc --version`"
+    value: ${{steps.versions.outputs.rustc-version}}
+  cargo-version:
+    description: "Version as reported by `cargo --version`"
+    value: ${{steps.versions.outputs.cargo-version}}
+  rustup-version:
+    description: "Version as reported by `rustup --version`"
+    value: ${{steps.versions.outputs.rustup-version}}
+  cachekey:
+    description: A short hash of the rustc version, appropriate for use as a cache key. "20220627a831"
+    value: ${{steps.versions.outputs.cachekey}}
+
+runs:
+  using: "composite"
+  steps:
+    - id: versions
+      uses: actions-rust-lang/setup-rust-toolchain@fb51252c7ba57d633bc668f941da052e410add48 # https://github.com/actions-rust-lang/setup-rust-toolchain/releases/tag/v1.13.0
+      with: 
+        toolchain: ${{ inputs.toolchain }}
+        target: ${{ inputs.target }}
+        components: ${{ inputs.components }}
