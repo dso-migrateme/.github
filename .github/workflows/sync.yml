@@ -20,13 +20,15 @@ jobs:
           UPSTREAM_SYNC_REPO: 'nautilus-wraith/.github'
           CURRENT_REPO_AND_ORG: ${{ github.repository }}
           CURRENT_REPO: ${{ github.event.repository.name }}
+          USERNAME: ${{ vars.USERNAME }}
+          EMAIL: ${{ vars.EMAIL }}
         run: |
           set -e
           git clone https://$UPSTREAM_REPO_ACCESS_TOKEN@github.com/$CURRENT_REPO_AND_ORG.git
           cd $CURRENT_REPO
           git remote set-url origin https://$UPSTREAM_REPO_ACCESS_TOKEN@github.com/$CURRENT_REPO_AND_ORG.git
-          git config user.name "secops-dso"
-          git config user.email "163456430+secops-dso@users.noreply.github.com"
+          git config user.name "$USERNAME"
+          git config user.email "$EMAIL"
           git remote add upstream https://$UPSTREAM_REPO_ACCESS_TOKEN@github.com/$UPSTREAM_SYNC_REPO.git
           git fetch upstream
 
