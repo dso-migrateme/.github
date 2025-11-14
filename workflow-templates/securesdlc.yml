@@ -3,7 +3,14 @@ run-name: "[Nautilus SecureSDLC] Ref:${{ github.ref_name }} Event:${{ github.eve
 
 on:
   workflow_dispatch: {}
-  workflow_call: {}       
+  workflow_call:
+    secrets:
+      SEMGREP_APP_URL:
+        required: true
+      SEMGREP_APP_TOKEN:
+        required: true
+      SDLC_SLACK_NOTIFICATIONS:
+        required: false
   push:
     branches: [ $default-branch ]
 
