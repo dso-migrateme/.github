@@ -1,4 +1,4 @@
-name: Nautilus SecureSDLC
+name: Nautilus SecureSDLC Required
 run-name: "[Nautilus SecureSDLC Required] Ref:${{ github.ref_name }} Event:${{ github.event_name }}"
 
 on:
