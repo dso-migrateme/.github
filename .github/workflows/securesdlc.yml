@@ -10,7 +10,7 @@ on:
       SEMGREP_APP_TOKEN:
         required: true
       SDLC_SLACK_NOTIFICATIONS:
-        required: false      
+        required: true
   push:
     branches: [ main ]
 
