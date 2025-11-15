@@ -6,7 +6,7 @@ This repository used for:
 
 GitHub has strict naming requirements for Workflow templates and Required workflow files and this is a good compromise to maintain both features in one place. It is expected that this repo structure will be located in every GitHub Oragnisation where Shift-Left will be rolled out.
 
-## Workflow templates (reusable workflows)
+## Workflow templates (Reusable workflows)
 Workflow templates support also branch name interpolation and the template can be defined as follows:
 ```
   push:
@@ -17,5 +17,4 @@ Workflow templates support also branch name interpolation and the template can b
 `$default-branch` is interpolated at the time of including workflow template in the target repository.
 
 ## Required workflows
-
 Required workflows will reference this repository to inject the appropriate workflows into the subject repository.
